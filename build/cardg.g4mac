@@ -1,0 +1,12 @@
+/run/numberOfThreads 1
+/run/initialize
+
+/tracking/verbose 0
+
+/gps/particle e-
+
+/random/setSeeds 51 1
+/gps/energy 100.0 GeV
+/run/beamOn 100
+
+exit
