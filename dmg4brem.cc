@@ -47,7 +47,7 @@ int main(int argc,char** argv) {
 		 ui = new G4UIExecutive(argc, argv);
 		 break;
 	 case 2:
-		 G4cout << "Single job mode : set random seed to be 1" << endl;
+		 G4cout << "Single job mode : set random seed to be " << seed << "." << G4endl;
 		 G4Random::setTheSeed(seed);
 		 break;
 	 case 3:
