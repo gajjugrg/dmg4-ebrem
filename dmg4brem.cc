@@ -32,6 +32,7 @@
 #include "G4ios.hh"
 
 #include "DarkMatterParametersFactory.hh"
+#include "Randomize.hh"
 
 int main(int argc,char** argv) {
 
@@ -53,8 +54,15 @@ int main(int argc,char** argv) {
 	 case 3:
 		 G4cout << "Batch job mode" << G4endl;
 		 outputFileName = argv[2];
-		 //G4Random::setTheSeed(seed);
 		 G4Random::setTheEngine(new CLHEP::MTwistEngine);
+		 G4Random::setTheSeed(seed);
+		 break;
+         case 4: 
+		 G4cout << "Batch mode with input random seed" << G4endl;
+                 outputFileName = argv[2];
+                 seed = atol(argv[3]);
+                 G4Random:: setTheSeed(seed);
+                 G4cout << "The seed is set to: " << seed << G4endl;
 		 break;
 	 default:
 		 G4cout << "Interactive Mode" << G4endl;
@@ -109,6 +117,9 @@ int main(int argc,char** argv) {
  	case 3:
 		runManager->SetUserInitialization(new ActionInitialization(detectorConstruction, darkMatterPhysics->GetDarkMatterPointer(), foutputfFileName));
 		break;
+ 	case 4:
+		runManager->SetUserInitialization(new ActionInitialization(detectorConstruction, darkMatterPhysics->GetDarkMatterPointer(), foutputfFileName));
+		break;
         default:
 		runManager->SetUserInitialization(new ActionInitialization(detectorConstruction, darkMatterPhysics->GetDarkMatterPointer()));
 		break;
@@ -133,7 +144,7 @@ int main(int argc,char** argv) {
 	    
   }
   else
-  // Batch mode
+  // vis mode
   { 
     // G4UIterminal is a (dumb) terminal.
     UImanager->ApplyCommand("/control/execute vis.mac");    
