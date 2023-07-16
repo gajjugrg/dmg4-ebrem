@@ -36,11 +36,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   //
   G4double env_sizeXY = 500*cm, env_sizeZ = 500*cm;
   G4Material* env_mat = new G4Material("Graphite", 6., 12.0107*(g/mole), 2.5*g/cm3);
-  //G4Material* env_mat = nist->FindOrBuildMaterial("G4_C");
-  //G4Material* env_mat = nist->FindOrBuildMaterial("G4_GRAPHITE");
-  G4cout << env_mat->GetA()/(g/mole) << G4endl;
-  G4cout << env_mat->GetZ() << G4endl;
-  G4cout << env_mat->GetDensity()/(g/cm3) << G4endl;
+
+  G4cout << "-------------------********************----------------" << G4endl;
+  G4cout << "Printing out target material information to cross check" << G4endl;
+  G4cout << "Material Atomic Mass: " << env_mat->GetA()/(g/mole) << G4endl;
+  G4cout << "Material Atomic Number: " << env_mat->GetZ() << G4endl;
+  G4cout << "Material Density: " << env_mat->GetDensity()/(g/cm3) << G4endl;
 
   // Option to switch on/off checking of volumes overlaps
   //

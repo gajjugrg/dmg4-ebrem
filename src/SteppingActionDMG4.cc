@@ -65,9 +65,9 @@ void SteppingActionDMG4::UserSteppingAction(const G4Step* aStep)
 
       eventAction->CountEmission();
 
-      G4cout << "Dark Matter production at E (GeV) = " << SPointPreStep->GetKineticEnergy()/GeV << G4endl;
-      G4cout <<  "DM Particle " << aStep->GetTrack()->GetDefinition()->GetParticleName() << G4endl;
-      G4cout << "Dark Matter Energy (GeV) = " << SPointPreStep->GetKineticEnergy()/GeV - aStep->GetPostStepPoint()->GetKineticEnergy()/GeV << G4endl;
+    //  G4cout << "Dark Matter production at E (GeV) = " << SPointPreStep->GetKineticEnergy()/GeV << G4endl;
+    //  G4cout <<  "DM Particle " << aStep->GetTrack()->GetDefinition()->GetParticleName() << G4endl;
+    //  G4cout << "Dark Matter Energy (GeV) = " << SPointPreStep->GetKineticEnergy()/GeV - aStep->GetPostStepPoint()->GetKineticEnergy()/GeV << G4endl;
     }
   }
 
@@ -78,7 +78,7 @@ void SteppingActionDMG4::UserSteppingAction(const G4Step* aStep)
 	// identify primary track
 	if (track->GetTrackID()== 1){
 		
-		//          G4cout << "PID: " << track->GetDefinition()->GetParticleName() << G4endl;
+		//  G4cout << "PID: " << track->GetDefinition()->GetParticleName() << G4endl;
 		auto fKineticEnergy = track->GetKineticEnergy();
 		auto trkLength = track ->GetTrackLength();
 		auto ProcName = aStep->GetPostStepPoint()->GetProcessDefinedStep()->GetProcessName();

@@ -8,7 +8,7 @@ project(DMG4ebrem)
 # You can set WITH_GEANT4_UIVIS to OFF via the command line or ccmake/cmake-gui
 # to build a batch mode only executable
 #
-option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
+option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" OFF)
 if(WITH_GEANT4_UIVIS)
   find_package(Geant4 REQUIRED ui_all vis_all)
 else()
@@ -20,14 +20,21 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../modules_cmake_standalone)
 #----------------------------------------------------------------------------
 # Set DMG4
 #
-set (DMG4_DIR /Users/Gajju/dmg4)
+#set (DMG4_DIR /Users/Gajju/dmg4)
+set (DMG4_DIR /cluster/home/ggurung/DMG4)
 set (DMG4_INCLUDE_DIR ${DMG4_DIR}/include)
 set (DMG4_LIBRARY_DIR ${DMG4_DIR}/lib)
 
 #----------------------------------------------------------------------------
 # Find GSL
 #
+
+set(GSL_INCLUDE_DIR /cluster/home/wyjang/app/gsl/2.7.1/x86_64-sl7-gcc4.8.5/include)
+set(GSL_LIBRARY /cluster/home/wyjang/app/gsl/2.7.1/x86_64-sl7-gcc4.8.5/lib/libgsl.so)
+set(GSL_CBLAS_LIBRARY /cluster/home/wyjang/app/gsl/2.7.1/x86_64-sl7-gcc4.8.5/lib/libgslcblas.so)
 find_package(GSL REQUIRED)
+
+
 
 #----------------------------------------------------------------------------
 # Setup Geant4 include directories and compile definitions
@@ -51,9 +58,11 @@ link_directories (
   )
 
 set(BREMPROJECT-DMG4_SCRIPTS
-  cardg.g4mac
   vis.mac
   clean
+  scripts/generate_runscripts.sh
+  scripts/submit.sh
+  scripts/cardg.g4mac
   )
 
 foreach(_script ${BREMPROJECT-DMG4_SCRIPTS})
